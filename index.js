@@ -50,8 +50,8 @@ class MulterSharp {
 
   _eachUpload(file, filename, gcName, fileOptions, stream) {
     return (size) => {
-      const filenameWithSuffix = filename.replace(/(\.[^\.]+)$/, `_${size.suffix}$1`);
-      const gcNameBySuffix = `${gcName}-${size.suffix}`;
+      const filenameWithSuffix = filename.replace(/(\.[^.]+)$/, `${size.suffix}$1`);
+      const gcNameBySuffix = gcName.replace(/(\.[^.]+)$/, `${size.suffix}$1`);
       const gcFile = this.gcsBucket.file(gcNameBySuffix);
       const resizerStream = transformer(this.sharpOptions, size);
       const writableStream = gcFile.createWriteStream(fileOptions);
